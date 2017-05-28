@@ -1,9 +1,14 @@
 # AR-Drone-Demo
+## Abstract
+This is a demo app for event モビリティIoTに特化したハッカソン in 東京  
+Check Links below for more informations.  
+https://www.facebook.com/events/412778262415587/  
+https://mobility-iot.connpass.com/event/55596/
 ## Useage
 ### Install
 1. node.js  
-We need node.js 7.5+ to active [async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) feature.  
-Down load newest Node.js [here](https://nodejs.org/en/download/current/) or use tools like [NVM](https://github.com/creationix/nvm) or [nodenv](https://github.com/nodenv/nodenv)   
+We need node.js 7.5+ to active [async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) feature.  
+Download newest Node.js [here](https://nodejs.org/en/download/current/) or use tools like [NVM](https://github.com/creationix/nvm) or [nodenv](https://github.com/nodenv/nodenv)   
 2. Dependencies   
 Use `npm i` to install all dependencies.  
 This app need to download [jQuery](https://jquery.com/) and [jQuery Mobile](http://jquerymobile.com/) from CDN once  
