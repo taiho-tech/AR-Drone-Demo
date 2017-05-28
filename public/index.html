@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<style>
+.ui-block-a, .ui-block-b, .ui-block-c {
+    /* background-color: lightgray; */
+    /* border: 1px solid black; */
+    /* height: 100px; */
+    font-weight: bold;
+    text-align: center;
+    /* padding: 30px; */
+}
+</style>
+</head>
+<body>
+
+<div data-role="page" id="pageone">
+  <div data-role="header">
+    <h1>Customized Columns</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <div  class="" style="text-align:center">
+      <img id='img' src="http://localhost:3000/png" alt="" style="height:200">
+    </div>
+    <div class="ui-grid-b">
+      <div class="ui-block-a">
+        <a id="counterClockwise" class="ui-btn">↑ counterClockwise(q) ↑</a>
+      </div>
+      <div class="ui-block-b">
+        <a id="forward" class="ui-btn">↑ Forward(w) ↑</a>
+      </div>
+      <div class="ui-block-c">
+        <a id="clockwise" class="ui-btn">↓ clockwise(e) ↓</a>
+      </div>
+    </div>
+    <div class="ui-grid-b">
+      <div class="ui-block-a">
+        <a id="left" class="ui-btn">＜ Left(a)</a>
+      </div>
+      <div class="ui-block-b">
+        <a id="back" class="ui-btn">↓ Back(s) ↓</a>
+      </div>
+      <div class="ui-block-c">
+        <a id="right" class="ui-btn">Right(d) ＞</a>
+      </div>
+    </div>
+    <div class="ui-grid-b">
+      <div class="ui-block-a" >
+        <a id="takeoff" class="ui-btn">↑ Takeoff(z) ↑</a>
+      </div>
+      <div class="ui-block-b">
+        <a id="" class="ui-btn" style="visibility:hidden">↑ Forward ↑</a>
+      </div>
+      <div class="ui-block-c">
+        <a id="land" class="ui-btn">↓ Land(c) ↓</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  keys1 = [
+    'counterClockwise', // 113 = q
+    'front',// w
+    'clockwise',// e
+    'left',// a
+    'back',// s
+    'right',// d
+    'takeoff',//z
+    'land'//c
+  ]
+  var keys2 = {
+    113: 'counterClockwise', // 113 = q
+    119: 'front',// w
+    101: 'clockwise',// e clockwise(0.5)
+    97: 'left',// a
+    115: 'back',// s
+    100: 'right',// d
+    122: 'takeoff',//z
+    99: 'land'//c
+  }
+  $( "body" ).keypress(function( event ) {
+    //console.log(event.which);
+    let keycode = event.which;
+    let key = keys2[keycode]
+    if (key) {
+      $.get(`http://localhost:3000/api/${key}`, (data) => {
+        console.log("Data Loaded: " + data);
+      });
+    }
+    event.preventDefault();
+    /*
+    if ( event.which == 13 ) {
+      event.preventDefault();
+    }*/
+  })
+  keys1.forEach( key => {
+    $(`#${key}`).click(()=>{
+      $.get(`http://localhost:3000/api/${key}`, (data) => {
+        console.log("Data Loaded: " + data);
+      });
+    })
+  })
+  setInterval(function () {
+    var src = 'http://localhost:3000/png';
+    $('#img').attr('src', src + '?' + new Date().getTime());
+  }, 1000);
+</script>
+</body>
+</html>
